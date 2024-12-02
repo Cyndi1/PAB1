@@ -51,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
           // Item Keempat (Icon Person) index 3
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profil',
+            label: 'Profile',
           ),
         ],
         currentIndex: _selectedIndex,
