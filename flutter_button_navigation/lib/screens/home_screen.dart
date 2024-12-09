@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_button_navigation/data/candi_data.dart';
 import 'package:flutter_button_navigation/models/candi.dart';
+import 'package:flutter_button_navigation/screens/detail_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -23,42 +24,50 @@ class HomeScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             Candi candi = candiList[index];
             // Tampilan untuk 1 grid
-            return Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)),
-              margin: const EdgeInsets.all(6),
-              elevation: 1,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // Gambar Candi
-                  Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image.asset(
-                        candi.imageAsset,
-                        fit: BoxFit.cover,
+            return InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => DetailScreen(varCandi: candi)));
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)),
+                margin: const EdgeInsets.all(6),
+                elevation: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    // Gambar Candi
+                    Expanded(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: Image.asset(
+                          candi.imageAsset,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  // Nama Candi
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16, top: 8),
-                    child: Text(
-                      candi.name,
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.bold),
+                    // Nama Candi
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16, top: 8),
+                      child: Text(
+                        candi.name,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
                     ),
-                  ),
-                  // Tipe Candi
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16, top: 8),
-                    child: Text(
-                      candi.type,
-                      style: const TextStyle(fontSize: 12),
+                    // Tipe Candi
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16, top: 8),
+                      child: Text(
+                        candi.type,
+                        style: const TextStyle(fontSize: 12),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           },
